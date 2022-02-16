@@ -1,0 +1,1 @@
+C:\Users\hungd\anaconda3\Scripts\activate.bat ARISE && spyder

@@ -1,0 +1,4 @@
+{
+    "basicUser.inputCSV": "C:/Users/hungd/Documents/Work/AR54/ARISE/code/testFiles/testInput.csv",
+    "basicUser.uniqueID": "12"
+}
