@@ -21,3 +21,5 @@ def addPaths():
     # Advanced User
     sys.path.append('../advancedUser')
     
+    # Contact Info
+    sys.path.append('../contact')

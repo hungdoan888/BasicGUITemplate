@@ -14,6 +14,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from home import Home
 from basicUser import BasicUser
 from advancedUser import AdvancedUser
+from contact import Contact
 
 #%% Main
 
@@ -32,10 +33,15 @@ class MainWindow(QMainWindow):
         self.BasicUser = BasicUser()
         self.stackedWidget.addWidget(self.BasicUser)
         
-        # Basic User
+        # Advanced User
         self.comboBox.addItem('Advanced User')
         self.AdvancedUser = AdvancedUser()
         self.stackedWidget.addWidget(self.AdvancedUser)
+        
+        # Advanced User
+        self.comboBox.addItem('Contact Info')
+        self.Contact = Contact()
+        self.stackedWidget.addWidget(self.Contact)
         
         # Connect Combo Box
         self.comboBox.currentIndexChanged.connect(self.comboBoxChanged)

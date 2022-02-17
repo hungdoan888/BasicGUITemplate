@@ -16,6 +16,12 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QFrame" name="frame">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>190</height>
+      </size>
+     </property>
      <property name="styleSheet">
       <string notr="true">border-radius: 5px;</string>
      </property>
@@ -353,35 +359,6 @@ QLineEdit:focus {
               </item>
              </layout>
             </item>
-            <item>
-             <widget class="QCheckBox" name="checkBox">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>120</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="autoFillBackground">
-               <bool>false</bool>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QCheckBox::indicator::checked
-{
-background-color : rgb(27, 29, 35);
-image: url('../uiResourceFiles/icons/16x16/cil-check-alt.png');
-}</string>
-              </property>
-              <property name="text">
-               <string>Check Box</string>
-              </property>
-             </widget>
-            </item>
            </layout>
           </widget>
          </item>
@@ -404,7 +381,7 @@ image: url('../uiResourceFiles/icons/16x16/cil-check-alt.png');
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>500</height>
+         <height>16777215</height>
         </size>
        </property>
        <property name="palette">
