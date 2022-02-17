@@ -27,7 +27,11 @@ class AdvancedUser(QWidget):
         super().__init__(*args, **kwargs)
         uiFile = os.path.join(os.environ['PARENTDIR'], 'advancedUser/advancedUser.ui')
         uic.loadUi(uiFile, self)
-    
+        
+        # Define Variables
+        self.df = None
+        self.df_col = None
+        
         # Set Line Edit Values from Registry
         self.initiateValues()
         
@@ -36,6 +40,9 @@ class AdvancedUser(QWidget):
         
         # Connect Buttons
         self.connectButtons()
+        
+        # Create Dirs
+        createDirs()
         
     # Set Line Edit Values and create initial plots
     def initiateValues(self):
@@ -56,7 +63,7 @@ class AdvancedUser(QWidget):
         self.pushButton_inputCSV.clicked.connect(self.selectFile)
         self.pushButton_getColNames.clicked.connect(self.getColNames)
         self.pushButton_getSimRows.clicked.connect(self.getSimRows)
-        self.pushButton_exportResults.clicked.connect(self.createColumnsDf)
+        self.pushButton_exportResults.clicked.connect(self.exportResults)
         
     # Select Constituents File
     def selectFile(self):
@@ -131,7 +138,7 @@ class AdvancedUser(QWidget):
                                'Impute': imputeStatus})
         self.df_col = df_col
             
-    # Export Results
+    # Get Similar Rows
     def getSimRows(self):
         # Create df col table
         self.createColumnsDf()
@@ -170,5 +177,21 @@ class AdvancedUser(QWidget):
         for i in range(df.shape[0]):
             for j in range(df.shape[1]):
                 self.tableWidget.setItem(i+1, j, QTableWidgetItem(str(df.iloc[i,j])))
+                
+    # Export Results
+    def exportResults(self):
+        self.df.to_csv(r'..\results\advancedUserResults.csv', index=False)
+        print('Results Exported')
+        print(r'Location: \results\advancedUserResults.csv')
+        
+#%% Create Results Folder
+
+def createDirs():
+    # Paths
+    output = r"..\results"
+    
+    # Results
+    if not os.path.exists(output):
+        os.makedirs(output)
                 
                 

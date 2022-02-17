@@ -943,32 +943,32 @@ QHeaderView::section:vertical
        </column>
        <item row="0" column="0">
         <property name="text">
-         <string>uniqueID</string>
+         <string/>
         </property>
        </item>
        <item row="0" column="1">
         <property name="text">
-         <string>c1</string>
+         <string/>
         </property>
        </item>
        <item row="0" column="2">
         <property name="text">
-         <string>c2</string>
+         <string/>
         </property>
        </item>
        <item row="0" column="3">
         <property name="text">
-         <string>c3</string>
+         <string/>
         </property>
        </item>
        <item row="0" column="4">
         <property name="text">
-         <string>c4</string>
+         <string/>
         </property>
        </item>
        <item row="0" column="5">
         <property name="text">
-         <string>c5</string>
+         <string/>
         </property>
        </item>
        <item row="1" column="0">

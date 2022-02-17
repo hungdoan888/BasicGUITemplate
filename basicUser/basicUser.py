@@ -50,6 +50,7 @@ class BasicUser(QWidget):
     def connectButtons(self):
         self.pushButton_inputCSV.clicked.connect(self.selectFile)
         self.pushButton_getSimRows.clicked.connect(self.getSimRows)
+        self.pushButton_exportResults.clicked.connect(self.exportResults)
         
     # Select Constituents File
     def selectFile(self):
@@ -90,4 +91,20 @@ class BasicUser(QWidget):
         for i in range(df.shape[0]):
             for j in range(df.shape[1]):
                 self.tableWidget.setItem(i+1, j, QTableWidgetItem(str(df.iloc[i,j])))
+                
+    # Export Results
+    def exportResults(self):
+        self.df.to_csv(r'..\results\basicUserResults.csv', index=False)
+        print('Results Exported')
+        print(r'Location: \results\basicUserResults.csv')
+        
+#%% Create Results Folder
+
+def createDirs():
+    # Paths
+    output = r"..\results"
+    
+    # Results
+    if not os.path.exists(output):
+        os.makedirs(output)
                 
