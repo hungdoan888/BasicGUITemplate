@@ -72,13 +72,19 @@ class BasicUser(QWidget):
     # Write Results to Table
     def writeDfsToTables(self):
         df = self.df
+        keepColumns = list(df.columns)
         
         # Clear table
         self.tableWidget.setRowCount(1)  # Bring down to only header row for buy
+        self.tableWidget.setColumnCount(len(keepColumns))  # Set Column Count
         
         # Set number of rows
         newRowCount = max(len(df), 20)  # At least 20 rows looks good
         self.tableWidget.setRowCount(newRowCount)    
+        
+        # Rename Columns in Similarity table to only the ones we care about
+        for j in range(len(keepColumns)):
+            self.tableWidget.setItem(0, j, QTableWidgetItem(keepColumns[j]))
         
         # Fill values for buy table
         for i in range(df.shape[0]):

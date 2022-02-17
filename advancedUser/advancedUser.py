@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem
 from registry import loadFromRegistry
 from registry import saveToRegistry
 from fileDialog import fileDialogBox
-from basicUserFunctions import basicUserDummyFunction
+from advancedUserFunctions import advancedUserDummyFunction
 
 #%% For Testing 
 
@@ -98,7 +98,14 @@ class AdvancedUser(QWidget):
                 chkBoxItem = QTableWidgetItem()
                 chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
                 chkBoxItem.setCheckState(QtCore.Qt.Checked)
-                self.tableWidget_col.setItem(i, j, chkBoxItem)
+                
+                # Set Check State to 0 if checked
+                if ((j == 1 and self.checkBox_include.checkState() == 0) or
+                    (j == 2 and self.checkBox_weigh.checkState() == 0) or 
+                    (j == 3 and self.checkBox_impute.checkState() == 0)):
+                    chkBoxItem.setCheckState(QtCore.Qt.Unchecked)
+                    
+                self.tableWidget_col.setItem(i, j, chkBoxItem) 
                 
     # Create df columns capturing checkbox state
     def createColumnsDf(self):
@@ -126,22 +133,34 @@ class AdvancedUser(QWidget):
             
     # Export Results
     def getSimRows(self):
+        # Create df col table
+        self.createColumnsDf()
+        
+        # Define Variables
         inputCSV = self.lineEdit_inputCSV.text()       # Input CSV
         uniqueID = int(self.lineEdit_uniqueID.text())  # Unique ID
         numRec = int(self.comboBox.currentText())      # Number of Recommendations
+        df_col = self.df_col                           # Define column entries
         
-        # Run Basic User Dummy Function
-        self.df = basicUserDummyFunction(inputCSV, uniqueID, numRec)
+        # Run advanced User Dummy Function
+        self.df = advancedUserDummyFunction(inputCSV, uniqueID, numRec, df_col)
         
         # Write Results to Table
         self.writeDfsToTables()
     
     # Write Results to Table
     def writeDfsToTables(self):
+        # Define Variables
         df = self.df
+        keepColumns = list(df.columns)
         
         # Clear table
         self.tableWidget.setRowCount(1)  # Bring down to only header row for buy
+        self.tableWidget.setColumnCount(len(keepColumns))  # Set Column Count
+        
+        # Rename Columns in Similarity table to only the ones we care about
+        for j in range(len(keepColumns)):
+            self.tableWidget.setItem(0, j, QTableWidgetItem(keepColumns[j]))
         
         # Set number of rows
         newRowCount = max(len(df), 20)  # At least 20 rows looks good
