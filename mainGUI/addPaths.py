@@ -18,3 +18,6 @@ def addPaths():
     # Basic User
     sys.path.append('../basicUser')
     
+    # Advanced User
+    sys.path.append('../advancedUser')
+    

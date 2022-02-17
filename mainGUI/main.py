@@ -13,6 +13,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from home import Home
 from basicUser import BasicUser
+from advancedUser import AdvancedUser
 
 #%% Main
 
@@ -30,6 +31,11 @@ class MainWindow(QMainWindow):
         self.comboBox.addItem('Basic User')
         self.BasicUser = BasicUser()
         self.stackedWidget.addWidget(self.BasicUser)
+        
+        # Basic User
+        self.comboBox.addItem('Advanced User')
+        self.AdvancedUser = AdvancedUser()
+        self.stackedWidget.addWidget(self.AdvancedUser)
         
         # Connect Combo Box
         self.comboBox.currentIndexChanged.connect(self.comboBoxChanged)
